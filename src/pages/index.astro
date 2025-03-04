@@ -1,0 +1,281 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Real Estate Leads Service | Turnkey Leads',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get started',
+        href: 'https://turnkeyleads.com/signup',
+        target: '_blank',
+        icon: 'tabler:square-rounded-arrow-right',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+  >
+    <Fragment slot="title">
+      Real Leads That 
+      <span class="text-accent dark:text-white highlight">Actually</span> Close
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+      Every lead delivered exclusively to you—no sharing, no long-term contracts, just more closed deals. Trusted by agents nationwide with over 10,000+ leads delivered.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    tagline="Features"
+    title="What you get with Turnkey Leads"
+    subtitle="Qualified, exclusive leads delivered right to your inbox."
+    items={[
+      {
+        title: 'Exclusive Lead Ownership',
+        description:
+          'Each lead is delivered exclusively to you—no competition or sharing with other agents.',
+        icon: 'tabler:lock',
+      },
+      {
+        title: 'Real-Time Lead Delivery',
+        description:
+          'Get notified instantly as leads come in, enabling you to respond quickly and close faster.',
+        icon: 'tabler:clock-check',
+      },
+      {
+        title: 'High-Quality, Verified Leads',
+        description:
+          'Receive only verified and actively interested leads, maximizing your chances of converting them.',
+        icon: 'tabler:user-check',
+      },
+      {
+        title: 'Exclusive Email Delivery',
+        description:
+          'Qualified real estate leads sent directly to your inbox, ready for immediate follow-up.',
+        icon: 'tabler:mail-check',
+      },
+      {
+        title: 'Flexible Monthly Plans',
+        description:
+          'Adjust your lead volume at any time with simple, transparent monthly billing—no long-term commitments.',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        title: 'Easy Plan Upgrades & Downgrades',
+        description:
+          'Instantly scale up when you need more leads or easily scale down starting next month—always fair and transparent.',
+        icon: 'tabler:arrows-up-down',
+      },
+    ]}
+  />
+
+  <!-- Steps Widget ****************** -->
+  <div class="relative py-12 sm:py-16">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>
+
+    <Steps
+      title="Start receiving qualified, exclusive real estate leads in less than two minutes."
+      items={[
+        {
+          title: 'Step 1: <span class="font-medium">Select Your Locations</span>',
+          description:
+            "Choose the cities, radii, and budgets that match your real estate goals. Our intuitive selection process makes customizing your leads easy.",
+          icon: 'tabler:map-pin',
+        },
+        {
+          title: 'Step 2: <span class="font-medium">Complete Secure Checkout</span>',
+          description:
+            "Effortlessly complete your subscription via Stripe’s secure payment system. Simple, safe, and designed to get you started quickly.",
+          icon: 'tabler:credit-card',
+        },
+        {
+          title: 'Step 3: <span class="font-medium">Confirm Your Account</span>',
+          description:
+            'Verify your email and quickly set up your account. A seamless onboarding process that ensures you’re ready to manage your exclusive leads.',
+          icon: 'tabler:user-check',
+        },
+        {
+          title: 'Step 4: <span class="font-medium">Start Receiving Leads</span>',
+          description:
+            'Leads start flowing directly to your inbox, giving you immediate opportunities to connect with clients and close more deals.',
+          icon: 'tabler:mail-check',
+        },
+      ]}
+      image={{
+        src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80',
+        alt: 'Steps image',
+      }}
+    />
+  </div>
+
+
+  <!-- Testimonials Widget *********** -->
+
+  <Testimonials
+    title="Words from real customers"
+    testimonials={[
+      {
+        testimonial: `Turnkey Leads helped me close 8 homes in the last year. The leads were consistently solid — and I love that I’m not tied into a long-term contract.`,
+        name: 'Emily K',
+        job: 'Keller Williams (Phoenix, AZ)',
+        image: {
+          src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
+          alt: 'Emily Kennedy Image',
+        },
+      },
+      {
+        testimonial: `I was able to ramp up my lead flow before the summer selling season and then scale back after. The flexibility is a game-changer for my business.`,
+        name: 'Sarah Hansen',
+        job: 'RE/MAX Agent',
+        image: {
+          src: 'https://images.unsplash.com/photo-1561406636-b80293969660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+          alt: 'Sarah Hansen Image',
+        },
+      },
+      {
+        testimonial: `The quality is night and day compared to other lead services. I know I’m the only one working my leads, which gives me a huge advantage in converting them.`,
+        name: 'Mark Wilkinson',
+        job: 'Coldwell Banker Agent',
+        image: {
+          src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=824&q=80',
+          alt: 'Mark Wilkinson Image',
+        },
+      },
+    ]}
+    callToAction={{
+      target: '_blank',
+      text: 'Get leads now...',
+      href: 'https://turnkeyleads.com/signup',
+      icon: 'tabler:chevron-right',
+    }}
+  />
+  
+  <!-- FAQs Widget ******************* -->
+<div class="relative py-12 sm:py-16">
+  <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>
+<FAQs
+
+  title="Frequently Asked Questions"
+  subtitle="Have questions about how TurnKeyLeads can help you close more deals? We’ve got answers."
+  tagline="FAQs"
+  classes={{ container: 'max-w-6xl' }}
+  items={[
+    {
+      title: 'How does Turnkey Leads generate leads?',
+      description:
+        "We use a variety of online advertising channels—like Google, Facebook, and Instagram—along with high-converting landing pages to attract motivated buyers and sellers in your target area.",
+    },
+    {
+      title: 'What makes these leads “exclusive”?',
+      description:
+        "Each lead is assigned to a single agent only, so you’re never competing with other realtors for the same contact. Once a lead is yours, it’s truly yours.",
+    },
+    {
+      title: 'Is there a long-term contract?',
+      description:
+        "No, we offer month-to-month plans with no lock-in. You can upgrade or cancel anytime. Downgrades take effect in the next billing cycle for fair, transparent billing.",
+    },
+    {
+      title: 'How many leads can I expect each month?',
+      description:
+        "Lead volume varies by your budget, location, and local demand. On average, our clients receive a steady stream of interested prospects—often in the range of dozens per month, but exact numbers depend on your market.",
+    },
+    {
+      title: 'What if I’m not satisfied with the leads?',
+      description:
+        "We strive for high-quality, motivated contacts. If you have concerns, our support team will help optimize your targeting or adjust your plan. Remember, you can cancel at any time with no penalties.",
+    },
+    {
+      title: 'What’s the typical lead-to-close conversion rate?',
+      description:
+        "Most agents using TurnKeyLeads report converting about 5–10% of leads into closed deals, although results can vary by region, follow-up strategy, and market conditions.",
+    },
+    {
+      title: 'How soon will I start receiving leads?',
+      description:
+        "Once your account is set up and your target area is selected, you can typically expect leads within 24–48 hours as our campaigns go live in your region.",
+    },
+    {
+      title: 'How do I track and manage my leads?',
+      description:
+        "You’ll get real-time notifications via email (or SMS if enabled), and can also view and manage your leads in our dashboard. We integrate with popular CRMs so you can keep all your contacts in one place.",
+    },
+    {
+      title: 'Can I target multiple regions?',
+      description:
+        "Yes! Simply select additional cities or ZIP codes during signup or add them later. Each additional region can be added to your subscription for more lead flow.",
+    },
+  ]}
+/>
+</div>
+
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+  actions={[
+    {
+      variant: 'primary',
+      text: 'Get Started',
+      href: 'https://turnkeyleads.com/signup',
+      target: '_blank',
+      icon: 'tabler:square-rounded-arrow-right',
+    },
+  ]}
+>
+  <!-- Customize the title as needed -->
+  <Fragment slot="title">
+    Ready to See Real Results?
+  </Fragment>
+
+  <!-- Fun, conversational subtitle referencing the big/fake numbers -->
+  <Fragment slot="subtitle">
+    Don't waste another minute. Get leads your can count on today!
+  </Fragment>
+</CallToAction>
+  <!-- HighlightedPosts Widget ******* -->
+
+<div class="relative py-12 sm:py-16">
+  <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>``
+
+  <BlogLatestPosts
+    title="Find out more content in our Blog"
+    information={`.
+                `}
+  />
+
+</div>
+
+
+
+
+
+</Layout>
