@@ -195,7 +195,7 @@ const getAnalytics = (config: Config) => {
 
 export default (config: Config) => ({
   SITE: getSite(config),
-//  I18N: getI18N(config),
+  I18N: getI18N(config),
   METADATA: getMetadata(config),
   APP_BLOG: getAppBlog(config),
   UI: getUI(config),
