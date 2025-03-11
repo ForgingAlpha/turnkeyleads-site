@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: TurnkeyLeads
+    template: '%s — TurnkeyLeads'
+  description: "\U0001F680 Real Estate Lead Generation Service"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: TurnkeyLeads
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -66,7 +66,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      id: G-PY2JMJG02M
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
