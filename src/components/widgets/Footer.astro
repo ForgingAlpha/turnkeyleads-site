@@ -2,20 +2,17 @@
 import { SITE, APP_BLOG } from 'astrowind:config';
 import { getHomePermalink, getBlogPermalink } from '~/utils/permalinks';
 import { findLatestPosts } from '~/utils/blog';
-
-interface Link {
-  text?: string;
-  href?: string;
-  ariaLabel?: string;
-}
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
-  footNote?: string;
   theme?: string;
 }
 
-const { footNote = '', theme = 'light' } = Astro.props;
-const hasBlogPosts = APP_BLOG.isEnabled && (await findLatestPosts({ count: 1 })).length > 0;
+const { theme = 'light' } = Astro.props;
+const showBlogLink = APP_BLOG.isEnabled && (await findLatestPosts({ count: 1 })).length > 0;
+
+// Get contact information from site config
+const { contact, social } = SITE;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
@@ -23,6 +20,30 @@ const hasBlogPosts = APP_BLOG.isEnabled && (await findLatestPosts({ count: 1 }))
     <div class="grid grid-cols-12 gap-8">
       <div class="col-span-12 md:col-span-4">
         <a class="font-bold text-xl mb-2 inline-block" href={getHomePermalink()}>{SITE?.name}</a>
+        {social && (
+          <div class="mt-4 flex space-x-4">
+            {social.twitter && (
+              <a href={social.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-gray-500 hover:text-blue-500">
+                <Icon name="tabler:brand-twitter" class="w-6 h-6" />
+              </a>
+            )}
+            {social.facebook && (
+              <a href={social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-gray-500 hover:text-blue-600">
+                <Icon name="tabler:brand-facebook" class="w-6 h-6" />
+              </a>
+            )}
+            {social.instagram && (
+              <a href={social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-pink-600">
+                <Icon name="tabler:brand-instagram" class="w-6 h-6" />
+              </a>
+            )}
+            {social.linkedin && (
+              <a href={social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-gray-500 hover:text-blue-700">
+                <Icon name="tabler:brand-linkedin" class="w-6 h-6" />
+              </a>
+            )}
+          </div>
+        )}
       </div>
       <div class="col-span-6 md:col-span-2">
         <h3 class="font-medium dark:text-gray-300 mb-3">Quick Links</h3>
@@ -31,7 +52,9 @@ const hasBlogPosts = APP_BLOG.isEnabled && (await findLatestPosts({ count: 1 }))
           <li><a href="/about" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">About Us</a></li>
           <li><a href="/pricing" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Pricing</a></li>
           <li><a href="/contact" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Contact Us</a></li>
-          <li><a href={getBlogPermalink()} class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Blog</a></li>
+          {showBlogLink && (
+            <li><a href={getBlogPermalink()} class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Blog</a></li>
+          )}
         </ul>
       </div>
       <div class="col-span-6 md:col-span-2">
@@ -45,11 +68,20 @@ const hasBlogPosts = APP_BLOG.isEnabled && (await findLatestPosts({ count: 1 }))
       <div class="col-span-12 md:col-span-4">
         <h3 class="font-medium dark:text-gray-300 mb-3">Contact Us</h3>
         <ul class="text-sm space-y-2">
-          <li>Email: <a href="mailto:support@turnkeyleads.com" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">support@turnkeyleads.com</a></li>
-          <li>Phone: <a href="tel:+11234567890" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">(123) 456-7890</a></li>
-          <li>Address: 981 Route 228, Mars, PA 16046</li>
+          {contact?.email && (
+            <li>Email: <a href={`mailto:${contact.email}`} class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">{contact.email}</a></li>
+          )}
+          {contact?.phone && (
+            <li>Phone: <a href={`tel:+1${contact.phone.replace(/\D/g,'')}`} class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">{contact.phone}</a></li>
+          )}
+          {contact?.address && (
+            <li>Address: {contact.address}</li>
+          )}
         </ul>
       </div>
+    </div>
+    <div class="mt-8 text-center text-sm text-gray-500">
+      <p>© {new Date().getFullYear()} {SITE?.name}. All rights reserved.</p>
     </div>
   </div>
 </footer>

@@ -5,6 +5,19 @@ site:
   trailingSlash: false
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  
+  # Company contact information (used in footer and other components)
+  contact:
+    email: support@turnkeyleads.com
+    phone: (123) 456-7890
+    address: 981 Route 228, Mars, PA 16046
+  
+  # Social media links
+  social:
+    twitter: https://twitter.com/turnkeyleads
+    instagram: https://instagram.com/turnkeyleads
+    facebook: https://facebook.com/turnkeyleads
+    linkedin: https://linkedin.com/company/turnkeyleads
 
 # Default SEO metadata
 metadata:
