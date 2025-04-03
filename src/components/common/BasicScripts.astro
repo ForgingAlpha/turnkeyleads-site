@@ -45,7 +45,7 @@ import { UI } from 'astrowind:config';
     let ticking = true;
 
     attachEvent('#header nav', 'click', function () {
-      document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
+      document.querySelector('[data-aw-toggle-menu], [data-tk-toggle-menu]')?.classList.remove('expanded');
       document.body.classList.remove('overflow-hidden');
       document.getElementById('header')?.classList.remove('h-screen');
       document.getElementById('header')?.classList.remove('expanded');
@@ -54,7 +54,7 @@ import { UI } from 'astrowind:config';
       document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
     });
 
-    attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
+    attachEvent('[data-aw-toggle-menu], [data-tk-toggle-menu]', 'click', function (_, elem) {
       elem.classList.toggle('expanded');
       document.body.classList.toggle('overflow-hidden');
       document.getElementById('header')?.classList.toggle('h-screen');
@@ -107,7 +107,7 @@ import { UI } from 'astrowind:config';
 
     const screenSize = window.matchMedia('(max-width: 767px)');
     screenSize.addEventListener('change', function () {
-      document.querySelector('[data-aw-toggle-menu]')?.classList.remove('expanded');
+      document.querySelector('[data-aw-toggle-menu], [data-tk-toggle-menu]')?.classList.remove('expanded');
       document.body.classList.remove('overflow-hidden');
       document.getElementById('header')?.classList.remove('h-screen');
       document.getElementById('header')?.classList.remove('expanded');
@@ -117,7 +117,8 @@ import { UI } from 'astrowind:config';
     });
 
     function applyHeaderStylesOnScroll() {
-      const header = document.querySelector('#header[data-aw-sticky-header]');
+      // Support both data-aw-sticky-header (original) and data-tk-sticky-header (new naming)
+      const header = document.querySelector('#header[data-aw-sticky-header], #header[data-tk-sticky-header]');
       if (!header) return;
       if (lastKnownScrollPosition > 60 && !header.classList.contains('scroll')) {
         header.classList.add('scroll');
@@ -141,7 +142,7 @@ import { UI } from 'astrowind:config';
   };
   const onPageShow = function () {
     document.documentElement.classList.add('motion-safe:scroll-smooth');
-    const elem = document.querySelector('[data-aw-toggle-menu]');
+    const elem = document.querySelector('[data-aw-toggle-menu], [data-tk-toggle-menu]');
     if (elem) {
       elem.classList.remove('expanded');
     }
