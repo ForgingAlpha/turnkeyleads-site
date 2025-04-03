@@ -4,16 +4,16 @@
 
 @layer utilities {
   .bg-page {
-    background-color: var(--tk-color-bg-page, var(--aw-color-bg-page));
+    background-color: var(--tk-color-bg-page);
   }
   .bg-dark {
-    background-color: var(--tk-color-bg-page-dark, var(--aw-color-bg-page-dark));
+    background-color: var(--tk-color-bg-page-dark);
   }
   .text-page {
-    color: var(--tk-color-text-page, var(--aw-color-text-page));
+    color: var(--tk-color-text-page);
   }
   .text-muted {
-    color: var(--tk-color-text-muted, var(--aw-color-text-muted));
+    color: var(--tk-color-text-muted);
   }
 }
 
@@ -69,17 +69,14 @@
   stroke-width: 2.4;
 }
 
-[data-aw-toggle-menu] path,
 [data-tk-toggle-menu] path {
   @apply transition;
 }
 
-[data-aw-toggle-menu].expanded g > path:first-child,
 [data-tk-toggle-menu].expanded g > path:first-child {
   @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
 }
 
-[data-aw-toggle-menu].expanded g > path:last-child,
 [data-tk-toggle-menu].expanded g > path:last-child {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
