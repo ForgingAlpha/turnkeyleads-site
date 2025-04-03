@@ -15,40 +15,50 @@ type ImageType = {
   attributes: HTMLAttributes<'img'>;
 };
 
-const props = Astro.props;
+const {
+  src,
+  alt,
+  width: inputWidth,
+  height: inputHeight,
+  loading: inputLoading = 'lazy',
+  decoding: inputDecoding = 'async',
+  crossorigin = 'anonymous',
+  referrerpolicy = 'no-referrer',
+  ...restProps
+} = Astro.props;
 
-if (props.alt === undefined || props.alt === null) {
-  throw new Error();
+if (alt === undefined || alt === null) {
+  throw new Error('Image component requires an "alt" attribute for accessibility');
 }
 
-if (typeof props.width === 'string') {
-  props.width = parseInt(props.width);
-}
+// Parse width and height properly with radix
+const width = typeof inputWidth === 'string' ? parseInt(inputWidth, 10) : inputWidth;
+const height = typeof inputHeight === 'string' ? parseInt(inputHeight, 10) : inputHeight;
 
-if (typeof props.height === 'string') {
-  props.height = parseInt(props.height);
-}
+// Create a new props object with properly processed values
+const processedProps: ImageProps = {
+  src,
+  alt,
+  width,
+  height,
+  loading: inputLoading,
+  decoding: inputDecoding,
+  ...restProps,
+};
 
-if (!props.loading) {
-  props.loading = 'lazy';
-}
-
-if (!props.decoding) {
-  props.decoding = 'async';
-}
-
-const _image = await findImage(props.src);
+const _image = await findImage(src);
 
 let image: ImageType | undefined = undefined;
 
+// Improve type safety in the conditional
 if (
   typeof _image === 'string' &&
   (_image.startsWith('http://') || _image.startsWith('https://')) &&
   isUnpicCompatible(_image)
 ) {
-  image = await getImagesOptimized(_image, props, unpicOptimizer);
+  image = await getImagesOptimized(_image, processedProps, unpicOptimizer);
 } else if (_image) {
-  image = await getImagesOptimized(_image, props, astroAsseetsOptimizer);
+  image = await getImagesOptimized(_image, processedProps, astroAsseetsOptimizer);
 }
 ---
 
@@ -56,6 +66,11 @@ if (
   !image ? (
     <Fragment />
   ) : (
-    <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+    <img 
+      src={image.src} 
+      crossorigin={crossorigin} 
+      referrerpolicy={referrerpolicy} 
+      {...image.attributes} 
+    />
   )
 }
