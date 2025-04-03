@@ -5,9 +5,10 @@ import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
 
-import { getHomePermalink } from '~/utils/permalinks';
+import { getHomePermalink, getBlogPermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
+// Removed blog-related imports as blog is now only in footer
 
 interface Link {
   text?: string;
@@ -43,6 +44,8 @@ const {
   showRssFeed = false,
   position = 'center',
 } = Astro.props;
+
+// Blog link removed from top navigation to focus on core conversion paths
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---

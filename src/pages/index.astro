@@ -11,6 +11,8 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { APP_BLOG } from 'astrowind:config';
+import { findLatestPosts } from '~/utils/blog';
 
 const metadata = {
   title: 'Real Estate Leads Service | Turnkey Leads',
@@ -32,7 +34,7 @@ const metadata = {
       },
       { text: 'Learn more', href: '#features' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Turnkey Leads Real Estate Lead Generation Service' }}
   >
     <Fragment slot="title">
       Real Leads That 
@@ -262,16 +264,16 @@ const metadata = {
 </CallToAction>
   <!-- HighlightedPosts Widget ******* -->
 
-<div class="relative py-12 sm:py-16">
-  <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>``
+{APP_BLOG?.isEnabled && (await findLatestPosts({ count: 1 })).length > 0 && (
+  <div class="relative py-12 sm:py-16">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>
 
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`.
-                `}
-  />
-
-</div>
+    <BlogLatestPosts
+      title="Real Estate Insights From Our Blog"
+      information={`Expert tips, strategies, and market insights to help you generate more quality leads and close more deals.`}
+    />
+  </div>
+)}
 
 
 

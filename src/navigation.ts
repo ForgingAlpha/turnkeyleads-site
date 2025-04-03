@@ -14,11 +14,11 @@ export const headerData = {
       text: 'About',
       href: getPermalink('/about')
     },
-
     {
       text: 'Contact',
       href: getPermalink('/contact')
-    },    
+    },
+    // Blog link removed from top navigation to focus on core conversion paths
   ],
 };
 

@@ -1,6 +1,7 @@
 ---
-import { SITE } from 'astrowind:config';
-import { getHomePermalink } from '~/utils/permalinks';
+import { SITE, APP_BLOG } from 'astrowind:config';
+import { getHomePermalink, getBlogPermalink } from '~/utils/permalinks';
+import { findLatestPosts } from '~/utils/blog';
 
 interface Link {
   text?: string;
@@ -14,6 +15,7 @@ export interface Props {
 }
 
 const { footNote = '', theme = 'light' } = Astro.props;
+const hasBlogPosts = APP_BLOG.isEnabled && (await findLatestPosts({ count: 1 })).length > 0;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
@@ -29,6 +31,7 @@ const { footNote = '', theme = 'light' } = Astro.props;
           <li><a href="/about" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">About Us</a></li>
           <li><a href="/pricing" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Pricing</a></li>
           <li><a href="/contact" class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Contact Us</a></li>
+          <li><a href={getBlogPermalink()} class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline">Blog</a></li>
         </ul>
       </div>
       <div class="col-span-6 md:col-span-2">
