@@ -7,16 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--aw-color-primary)',
-        secondary: 'var(--aw-color-secondary)',
-        accent: 'var(--aw-color-accent)',
-        default: 'var(--aw-color-text-default)',
-        muted: 'var(--aw-color-text-muted)',
+        primary: 'var(--tk-color-primary)',
+        secondary: 'var(--tk-color-secondary)',
+        accent: 'var(--tk-color-accent)',
+        default: 'var(--tk-color-text-default)',
+        muted: 'var(--tk-color-text-muted)',
       },
       fontFamily: {
-        sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
-        serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
-        heading: ['var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--tk-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
+        serif: ['var(--tk-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
+        heading: ['var(--tk-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
       },
 
       animation: {

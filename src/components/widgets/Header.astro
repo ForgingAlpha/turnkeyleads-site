@@ -25,7 +25,7 @@ export interface Props {
   links?: Array<MenuLink>;
   actions?: Array<CallToAction>;
   isSticky?: boolean;
-  isDark?: boolean;
+  // isDark removed - using light mode only
   isFullWidth?: boolean;
   // Theme toggle removed
   position?: string;
@@ -36,7 +36,7 @@ const {
   links = [],
   actions = [],
   isSticky = false,
-  isDark = false,
+  // isDark removed - using light mode only
   isFullWidth = false,
   // Theme toggle removed
   position = 'center',
@@ -47,7 +47,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
 <header
   class:list={[
-    { sticky: isSticky, relative: !isSticky, dark: isDark },
+    { sticky: isSticky, relative: !isSticky },
     'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
   ]}
   {...isSticky ? { 'data-tk-sticky-header': true } : {}}
@@ -90,7 +90,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                    class="hover:text-link px-4 py-3 flex items-center whitespace-nowrap"
                     aria-expanded="false"
                     aria-haspopup="true"
                     aria-label={ariaLabel || `${text} dropdown menu`}
@@ -98,12 +98,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </button>
-                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+                  <ul class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                     {links.map(({ text: text2, href: href2, ariaLabel: ariaLabel2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-nowrap',
+                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link py-2 px-5 block whitespace-nowrap',
                             { 'tk-link-active': href2 === currentPath },
                           ]}
                           href={href2}
@@ -118,7 +118,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                    'hover:text-link px-4 py-3 flex items-center whitespace-nowrap',
                     { 'tk-link-active': href === currentPath },
                   ]}
                   href={href}

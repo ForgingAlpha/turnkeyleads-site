@@ -1,6 +1,6 @@
 site:
   name: Turnkey Leads
-  site: 'https://turnkeyleads.com'
+  site: 'https://www.turnkeyleads.com'
   base: '/'
   trailingSlash: false
 
@@ -8,7 +8,7 @@ site:
   
   # Company contact information (used in footer and other components)
   contact:
-    email: support@turnkeyleads.com
+    email: support@www.turnkeyleads.com
     phone: (123) 456-7890
     address: 981 Route 228, Mars, PA 16046
   

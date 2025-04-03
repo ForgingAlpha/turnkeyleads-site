@@ -3,27 +3,45 @@ import { Icon } from 'astro-icon/components';
 import { twMerge } from 'tailwind-merge';
 import type { CallToAction as Props } from '~/types';
 
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'link';
+
 const {
-  variant = 'secondary',
+  variant = 'secondary' as ButtonVariant,
   target,
   text = await Astro.slots.render('default'),
   icon = '',
   class: className = '',
-  type,
+  type = 'button',
   ...rest
 } = Astro.props;
 
-const variants = {
-  primary: 'btn-primary',
-  secondary: 'btn-secondary',
-  tertiary: 'btn btn-tertiary',
-  link: 'cursor-pointer hover:text-primary',
+// Define class names directly without using variant mapping
+const getButtonClass = (variant: ButtonVariant): string => {
+  switch (variant) {
+    case 'primary':
+      return 'primary-button'; // Use our scoped CSS class for primary style
+    case 'secondary':
+      return 'btn bg-gray-50 font-medium hover:bg-gray-100 hover:border-gray-600 transition-colors duration-200';
+    case 'tertiary':
+      return 'btn border-none shadow-none text-muted hover:text-gray-900 transition-colors duration-200';
+    case 'link':
+      return 'cursor-pointer hover:text-blue-700 transition-colors duration-200';
+    default:
+      return 'btn bg-gray-50 font-medium'; // Fallback to secondary style
+  }
 };
+
+// Get the appropriate class based on variant and merge with any custom classes
+const finalClass = twMerge(getButtonClass(variant as ButtonVariant), className);
 ---
 
 {
   type === 'button' || type === 'submit' || type === 'reset' ? (
-    <button type={type} class={twMerge(variants[variant] || '', className)} {...rest}>
+    <button 
+      type={type} 
+      class={finalClass}
+      {...rest}
+    >
       <slot>
         {text && <Fragment set:html={text} />}
       </slot>
@@ -31,7 +49,7 @@ const variants = {
     </button>
   ) : (
     <a
-      class={twMerge(variants[variant] || '', className)}
+      class={finalClass}
       {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
       {...rest}
     >
@@ -42,3 +60,35 @@ const variants = {
     </a>
   )
 }
+
+<style>
+  /* Primary button styles with hover effect */
+  .primary-button {
+    background-color: #0161ef !important;
+    color: white !important;
+    border-color: #0161ef !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    font-weight: bold !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 9999px !important;
+    padding: 0.875rem 1.5rem !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s, border-color 0.2s !important;
+  }
+
+  .primary-button:hover {
+    background-color: #0154cf !important;
+    border-color: #0154cf !important;
+  }
+
+  @media (min-width: 768px) {
+    .primary-button {
+      padding: 0.875rem 2rem !important;
+    }
+  }
+</style>
