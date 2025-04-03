@@ -18,46 +18,60 @@ export interface Props extends Widget {
 }
 
 const {
-  title = await Astro.slots.render('title'),
+  title,
   linkText = 'View all posts',
   linkUrl = getBlogPermalink(),
-  information = await Astro.slots.render('information'),
+  information,
   count = 4,
 
   id,
   isDark = false,
   classes = {},
-  bg = await Astro.slots.render('bg'),
+  bg,
 } = Astro.props;
 
 const posts = APP_BLOG.isEnabled ? await findLatestPosts({ count }) : [];
+const shouldRender = APP_BLOG.isEnabled && posts.length > 0;
 ---
 
-{
-  APP_BLOG.isEnabled && posts.length > 0 ? (
-    <WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string} bg={bg}>
-      <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
-        {title && (
-          <div class="md:max-w-sm">
-            <h2
-              class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2"
-              set:html={title}
-            />
-            {APP_BLOG.list.isEnabled && linkText && linkUrl && (
-              <Button variant="link" href={linkUrl}>
-                {' '}
-                {linkText} »
-              </Button>
-            )}
-          </div>
-        )}
+{shouldRender && (
+  <WidgetWrapper id={id} isDark={isDark} containerClass={classes?.container as string} bg={bg}>
+    <div class="flex flex-col lg:justify-between lg:flex-row mb-8">
+      {title && (
+        <div class="md:max-w-sm">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none group font-heading mb-2">
+            {title}
+          </h2>
+          {APP_BLOG.list.isEnabled && linkText && linkUrl && (
+            <Button variant="link" href={linkUrl}>
+              {linkText} »
+            </Button>
+          )}
+        </div>
+      )}
 
-        {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
-      </div>
+      {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md">{information}</p>}
+    </div>
 
-      <Grid posts={posts} />
-    </WidgetWrapper>
-  ) : (
-    <Fragment />
-  )
-}
+    <Grid posts={posts} />
+    
+    {/* Add schema.org BlogPosting structured data for SEO */}
+    {posts.map((post) => (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        'headline': post.title,
+        'datePublished': post.publishDate,
+        'dateModified': post.updateDate || post.publishDate,
+        'description': post.excerpt,
+        'image': post.image,
+        'url': new URL(post.permalink, Astro.site).toString(),
+        'author': {
+          '@type': 'Organization',
+          'name': 'Turnkey Leads',
+          'url': Astro.site
+        }
+      })} />
+    ))}
+  </WidgetWrapper>
+)}
