@@ -15,6 +15,9 @@ const {
   ...rest
 } = Astro.props;
 
+// Add noopener noreferrer to all external links for security
+const secureRel = target === '_blank' ? 'noopener noreferrer' : undefined;
+
 // Define class names directly without using variant mapping
 const getButtonClass = (variant: ButtonVariant): string => {
   switch (variant) {
@@ -40,7 +43,7 @@ const finalClass = twMerge(getButtonClass(variant as ButtonVariant), className);
     <a
       class={finalClass}
       href={rest.href}
-      {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
+      {...(target ? { target, rel: secureRel } : {})}
       {...rest}
     >
       <slot>

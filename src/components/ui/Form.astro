@@ -52,6 +52,7 @@ const encType = hasFiles ? "multipart/form-data" : "application/x-www-form-urlen
                 id={`${formId}-${name}`}
                 autocomplete={autocomplete}
                 placeholder={placeholder}
+                required={type === 'email' || name === 'name' ? true : false}
                 class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 bg-white"
               />
             </div>
@@ -70,6 +71,7 @@ const encType = hasFiles ? "multipart/form-data" : "application/x-www-form-urlen
           name={textarea.name ? textarea.name : 'message'}
           rows={textarea.rows ? textarea.rows : 4}
           placeholder={textarea.placeholder}
+          required={textarea.required || false}
           class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 bg-white"
         />
       </div>
