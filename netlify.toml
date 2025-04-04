@@ -7,7 +7,4 @@
   pretty_urls = false
 [build.processing.forms]
   parse = true
-[[headers]]
-  for = "/_astro/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+# Headers are now defined in public/_headers

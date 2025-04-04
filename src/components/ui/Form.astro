@@ -12,7 +12,7 @@ const {
   method = 'POST',
   name = 'contact-form',
   hasFiles = false,
-  formId = `form-${Math.random().toString(36).substring(2, 11)}`,
+  formId = `form-${name?.replace(/[^a-z0-9]/gi, '') || 'contact'}`,
 } = Astro.props;
 
 const encType = hasFiles ? "multipart/form-data" : "application/x-www-form-urlencoded";
@@ -38,7 +38,7 @@ const encType = hasFiles ? "multipart/form-data" : "application/x-www-form-urlen
   {
     inputs &&
       inputs.map(
-        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
+        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '', required = false }) =>
           name && (
             <div class="mb-6">
               {label && (
@@ -52,7 +52,7 @@ const encType = hasFiles ? "multipart/form-data" : "application/x-www-form-urlen
                 id={`${formId}-${name}`}
                 autocomplete={autocomplete}
                 placeholder={placeholder}
-                required={type === 'email' || name === 'name' ? true : false}
+                required={type === 'email' || name === 'name' || required === true ? true : false}
                 class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 bg-white"
               />
             </div>
@@ -86,7 +86,8 @@ const encType = hasFiles ? "multipart/form-data" : "application/x-www-form-urlen
             id={`${formId}-disclaimer`}
             name="disclaimer"
             type="checkbox"
-            class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 bg-white"
+            class="cursor-pointer mt-1 h-4 w-4 rounded border border-gray-300 text-blue-600 focus:ring-blue-500"
+            required={disclaimer.required || false}
           />
         </div>
         <div class="ml-3">
