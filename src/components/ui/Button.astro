@@ -36,28 +36,29 @@ const finalClass = twMerge(getButtonClass(variant as ButtonVariant), className);
 ---
 
 {
-  type === 'button' || type === 'submit' || type === 'reset' ? (
+  rest.href ? (
+    <a
+      class={finalClass}
+      href={rest.href}
+      {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
+      {...rest}
+    >
+      <slot>
+        {text}
+      </slot>
+      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
+    </a>
+  ) : (
     <button 
       type={type} 
       class={finalClass}
       {...rest}
     >
       <slot>
-        {text && <Fragment set:html={text} />}
+        {text}
       </slot>
       {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
     </button>
-  ) : (
-    <a
-      class={finalClass}
-      {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
-      {...rest}
-    >
-      <slot>
-        {text && <Fragment set:html={text} />}
-      </slot>
-      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
-    </a>
   )
 }
 
