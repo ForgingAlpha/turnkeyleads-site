@@ -13,10 +13,10 @@ const metadata = {
   <!-- HeroText Widget ******************* -->
 
   <HeroText tagline="Contact" title="Let's Connect!" />
-
-  <ContactUs
+  
+  <div class="-mt-8">
+    <ContactUs
     id="form"
-    title="Drop us a message today!"
     subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking for right there! If not, our support team is delighted to help you."
     inputs={[
       {
@@ -33,12 +33,9 @@ const metadata = {
     textarea={{
       label: 'Message',
     }}
-    disclaimer={{
-      label:
-        'By submitting this form, you acknowledge and agree to the collection of your personal information as described in our Privacy Policy.',
-    }}
     description="Our support team typically responds within 24 business hours."
   />
+  </div>
 
   <!-- Features2 Widget ************** -->
 
