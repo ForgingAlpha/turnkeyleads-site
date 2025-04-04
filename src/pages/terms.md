@@ -5,7 +5,7 @@ layout: '~/layouts/MarkdownLayout.astro'
 
 _Last updated_: April 03, 2025
 
-Please read these Terms of Service carefully before subscribing to or using Turnkey Leads' lead generation service.
+Please read these Terms of Service carefully before subscribing to or using TurnKey Leads' lead generation service.
 
 ## Interpretation and Definitions
 
@@ -21,7 +21,7 @@ For the purposes of these Terms of Service:
 
 - **Country** refers to: Pennsylvania, United States
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Turnkey Leads LLC, 981 Route 228, Mars, PA 16046.
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Alpha Apps, LLC, 981 Route 228, Mars, PA 16046.
 
 - **Customer** means a real estate professional or business that has subscribed to the Service to receive Leads.
 
@@ -41,7 +41,7 @@ For the purposes of these Terms of Service:
 
 - **Third-party Service** means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.
 
-- **Website** refers to Turnkey Leads, accessible from [https://www.turnkeyleads.com](https://www.turnkeyleads.com)
+- **Website** refers to TurnKey Leads, accessible from [https://www.turnkeyleads.com](https://www.turnkeyleads.com)
 
 - **You** means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable. In the context of this Agreement, "You" primarily refers to the Customer.
 
@@ -298,7 +298,7 @@ By continuing to access or use Our Service after those revisions become effectiv
 
 If you have any questions about these Terms of Service, You can contact us through any of the following methods:
 
-- By email: support@www.turnkeyleads.com
-- By mail: Turnkey Leads LLC, 981 Route 228, Mars, PA 16046
+- By email: support@turnkeyleads.com
+- By mail: Alpha Apps, LLC, 981 Route 228, Mars, PA 16046
 - By phone: (123) 456-7890
 - By visiting our contact page: [https://www.turnkeyleads.com/contact](https://www.turnkeyleads.com/contact)
