@@ -3,7 +3,7 @@ on:
   push:
     branches: [dev]
   pull_request:
-    branches: [main, staging]
+    branches: [main, staging, dev]
 
 permissions:
   contents: read
